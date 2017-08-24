@@ -1,9 +1,10 @@
+*******************
 A simple implementation of the Completely Fair Scheduler using binary heaps and Red black trees.
-
+******************
 
 Project Description:
 
-A simplified simulation of Linux’s scheduling algorithm (Completely Fair Scheduler) has been
+A simplified simulation of Linuxâ€™s scheduling algorithm (Completely Fair Scheduler) has been
 
 implemented. The objective of this scheduling algorithm is to ensure that each process/task which is
 
@@ -12,6 +13,8 @@ active gets fair access to the CPU. We have used the data structures Red Black T
 for implementing this algorithm and a comparison is made between Red Black Tree and Heap. An
 
 unfairness value has been used to decide the priority of processes getting access to the processor.
+
+
 
 Input:
 
@@ -25,7 +28,7 @@ Data structures and Modules used - Task Scheduler Implementation
 
 Data Structures:
 
-? The heap implementation required the use of a data structure that can be accessed by indices so
+* The heap implementation required the use of a data structure that can be accessed by indices so
 
 that the parent and the children nodes can be accessed by the indices (like i, 2i and 2i+1). In
 
@@ -33,13 +36,14 @@ addition the implementation also required storing the process id of the process 
 
 unfairness value belongs. So, an ArrayList data structure was used to implement this.
 
-3
 
-? The red black tree data structure required a component to store the process id , unfairness value,
+
+* The red black tree data structure required a component to store the process id , unfairness value,
 
 color of the node, etc in addition to the parent and child pointers. A nested class structure was
 
 used to implement this.
+
 
 FileReaderClass.java (Main class):
 
@@ -55,41 +59,46 @@ RedBlackTree.java:
 
 This class has the following functions to operate on a Red Black Tree.
 
-? printRBtree(): This function prints the Red Black Tree by passing the root node to the
+* printRBtree(): This function prints the Red Black Tree by passing the root node to the
 
 printTreee(RBNode rbn) method.
 
-? printTree(RBNode rbn): It prints the red black tree by performing an inorder traversal. It prints
+* printTree(RBNode rbn): It prints the red black tree by performing an inorder traversal. It prints
 
 the process id followed by the unfairness value and the color of the node containing the
 
 unfairness value.
 
-? insert(Process key): Inserts a new node to the Red Black Tree
+* insert(Process key): Inserts a new node to the Red Black Tree
 
-? fixTree(RBNode node): When a node is inserted to or deleted from Red Black Tree, a fixTree
+* fixTree(RBNode node): When a node is inserted to or deleted from Red Black Tree, a fixTree
 
 operation is performed in order to balance the tree. This is achieved with the help of rotateLeft()
 
 or rotateRight() operations.
 
-? rotateLeft(RBNode node): This performs a left rotation operation on the Red Black Tree.
+* rotateLeft(RBNode node): This performs a left rotation operation on the Red Black Tree.
 
-? rotateRight(RBNode node): This performs a right rotation operation on the Red Black Tree.
+* rotateRight(RBNode node): This performs a right rotation operation on the Red Black Tree.
 
-? transplant(): This method is called by the delete() method when the parent and child pointers are
+* transplant(): This method is called by the delete() method when the parent and child pointers are
 
 to be adjusted.
 
-? findLeftmost(): This function finds the leftmost node in the Red Black Tree.
+* findLeftmost(): This function finds the leftmost node in the Red Black Tree.
 
-? delete(): This operation deletes the node selected. This issues calls to deleteFixup() and
+* delete(): This operation deletes the node selected. This issues calls to deleteFixup() and
 
 transplant() methods.
 
-? deleteFixup(): After the deletion of a node, the Red Black Tree would have to be rebalanced.
+* deleteFixup(): After the deletion of a node, the Red Black Tree would have to be rebalanced.
+
+
+
 
 There are six cases for the deletion of red black trees and this is handled by delete fixup.
+
+
 
 HeapImpl.java:
 
@@ -97,34 +106,36 @@ This class performs task scheduling operations using a heap. Heap uses array dat
 
 the following functions:
 
-? parent(int pos): Takes in the position of the current node and returns the position of the parent of
+* parent(int pos): Takes in the position of the current node and returns the position of the parent of
 
 the current node.
 
-? leftChild(int pos):Takes in the position of the current node and returns the position of the left
+* leftChild(int pos):Takes in the position of the current node and returns the position of the left
 
 child of the current node.
 
-? rightChild(int pos): Takes in the position of the current node and returns the position of the right
+* rightChild(int pos): Takes in the position of the current node and returns the position of the right
 
 child of the current node.
 isLeaf(int pos): Checks whether a given node is a leaf or not. It is a boolean function.
 
-? swap(int fpos, int spos): Swaps two nodes in the heap. It is used in the minHeapify() function.
+* swap(int fpos, int spos): Swaps two nodes in the heap. It is used in the minHeapify() function.
 
-? minHeapify(int pos): This operation is performed when an insertion or deletion operation is
+* minHeapify(int pos): This operation is performed when an insertion or deletion operation is
 
 done on heap to rebalance the heap when the min heap property is violated.
 
-? insert(Process p): inserts a process in form of a node into the heap.
+* insert(Process p): inserts a process in form of a node into the heap.
 
-? print(): Prints the heap in the order in which the values are placed in the array list.
+* print(): Prints the heap in the order in which the values are placed in the array list.
 
-? minHeap(): Forms a min heap by calling the minHeapify() function.
+* minHeap(): Forms a min heap by calling the minHeapify() function.
 
-? remove(): Removes a node from the heap.
+* remove(): Removes a node from the heap.
 
-? getSize(): Returns the size of the heap.
+* getSize(): Returns the size of the heap.
+
+
 
 Process.java:
 
@@ -136,7 +147,9 @@ When this class is called, the insertion of these processes are done into the he
 
 respectively.
 
-Scheduler.java
+
+
+Scheduler.java:
 
 This class has the following functions.
 
@@ -172,7 +185,7 @@ This function also calculates the totalRunTime, totalTurnAroundTime, totalWaitTi
 
 and logs those values.
 
-5
+
 
 public void scheduleHeapRe(HeapImpl hp):
 
@@ -181,6 +194,8 @@ This function is invoked for the Heap Scheduling case where the unfairness value
 Remaining execution time. The functionality of this method is same as scheduleHeap as described above
 
 except that the unfairness measure is the remaining execution time.
+
+
 
 public void scheduleRBTreeRe(RedBlackTree rt):
 
@@ -192,11 +207,14 @@ described above except that the unfairness value is the remaining execution time
 
 process.
 
+
+
 public void scheduleHeapBoth(HeapImpl hp):
 
 This function is invoked for the Heap Scheduling case where the unfairness value is calculated based on
 
 both Time In CPU and Remaining Execution Time.
+
 
 public void scheduleRBTreeBoth(RedBlackTree rt):
 
@@ -208,11 +226,11 @@ Unfairness Measure:
 
 In the implementation, three different unfairness measures were used, they are
 
-? Time in CPU : The amount of time the process has spent in the CPU
+* Time in CPU : The amount of time the process has spent in the CPU
 
-? Remaining execution time: The amount of time a process would need to complete execution.
+* Remaining execution time: The amount of time a process would need to complete execution.
 
-? Time in CPU + Remaining execution time : Both the above said metrics together deccide the
+* Time in CPU + Remaining execution time : Both the above said metrics together deccide the
 
 unfairness.
 
